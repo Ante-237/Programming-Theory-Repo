@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - fast_player
+  - strong_player
+  - pillar
+  - goal_box
   layers:
   - Default
   - TransparentFX
