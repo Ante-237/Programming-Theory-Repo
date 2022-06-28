@@ -8,6 +8,8 @@ TagManager:
   - strong_player
   - pillar
   - goal_box
+  - center
+  - move_one
   layers:
   - Default
   - TransparentFX

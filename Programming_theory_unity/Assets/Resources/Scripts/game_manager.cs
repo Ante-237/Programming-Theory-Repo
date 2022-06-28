@@ -32,8 +32,7 @@ public class game_manager : MonoBehaviour
     //defualt value for box appearing
     int repeatRate = 20;
 
-    //defualt value for pillars swapping
-    float swap_Value = 100.0f;
+ 
 
 
     private void Start()
@@ -43,12 +42,6 @@ public class game_manager : MonoBehaviour
         InvokeRepeating("create_point_box", 10,repeatRate);
         //test method
         
-    }
-
-    private void LateUpdate()
-    {
-        move_To_newPost(true);
-
     }
 
     //method creates and instantiate player depending on the choice which indicates stroing or fast player
@@ -109,43 +102,13 @@ public class game_manager : MonoBehaviour
         int value = Random.Range(0, box_way_point.Length) ;
         float rotateR = Random.Range(0, 180);
         Instantiate(box_prefab, box_way_point[value].position, box_prefab.transform.rotation);
+        GameObject.FindGameObjectWithTag("pillar").GetComponent<pillars>().changePos();
+        //swaping pillars
     }
 
     //method makes pillars to swap positions by moving around.
-    void move_To_newPost(bool swap_us)
-    {
-        //speed for swapping
-        //if (swap_us)
-       // {
-            float step = swap_Value * Time.deltaTime;
-            //we first get all the pillars in the scene
-            GameObject[] pillars_inScene = GameObject.FindGameObjectsWithTag("pillar");
+  
 
-            Transform[] positions_pillars = new Transform[pillars_inScene.Length];
-            for (int i = 0; i < pillars_inScene.Length; i++)
-            {
-                positions_pillars[i] = pillars_inScene[pillars_inScene.Length - i].transform;
-            }
-            //take each object and move it.
-            int count = 0;
-            foreach (GameObject pillar in pillars_inScene)
-            {
-                moveObject(pillar, step, positions_pillars[count]);
-                Debug.Log("Method is called ${count}");
-                count++;
-            }
-     //   }
-
-
-    }
-
-    //move object base on the speed and target received
-    void moveObject(GameObject objectToMove, float speed, Transform target)
-    {
-        objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, target.position, speed);
-    }
-
-    //method to test method
  
     
 
