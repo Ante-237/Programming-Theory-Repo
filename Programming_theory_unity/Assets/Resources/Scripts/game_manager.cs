@@ -107,6 +107,21 @@ public class game_manager : MonoBehaviour
     }
 
     //method makes pillars to swap positions by moving around.
+
+
+    public Vector3 generatePosition()
+    {
+        float xRangeN = -392.0f;
+        float xRangeP = 325.0f;
+        float zRangeN = -360.0f;
+        float zRangeP = 375.0f;
+        float yDefualt = 65.0f;
+        float randomX = Random.Range(xRangeN, xRangeP);
+        float randomZ = Random.Range(zRangeN, zRangeP);
+
+        Vector3 newPos = new Vector3(randomX, yDefualt, randomZ);
+        return newPos;
+    }
   
 
  
