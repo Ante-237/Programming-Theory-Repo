@@ -43,7 +43,6 @@ public class pillars : MonoBehaviour
     //moves player with certain speed
     public void changePos()
     {
-        Debug.Log("new position" + pos.x);
         float s_up = pillarSpeed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, pos, s_up);
     }
@@ -65,8 +64,34 @@ public class pillars : MonoBehaviour
     }
 
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("fast_player"))
+        {
+            if(collision.gameObject.GetComponent<fast_player>().fast_player_health_u <= 1)
+            {
+                GameObject.FindGameObjectWithTag("SceneManager").GetComponent<sceneManager>().gameOver_Decide(true);
+            }
+
+            collision.gameObject.GetComponent<fast_player>().damage(5);
+        }
+
+        if (collision.gameObject.CompareTag("strong_player"))
+        {
+            if (collision.gameObject.GetComponent<strong_player>().strong_player_health_u <= 0)
+            {
+                GameObject.FindGameObjectWithTag("SceneManager").GetComponent<sceneManager>().gameOver_Decide(true);
+            }
+
+            collision.gameObject.GetComponent<strong_player>().damage(5);
+        }
 
 
-  
-    
+    }
+
+
+
+
+
+
 }

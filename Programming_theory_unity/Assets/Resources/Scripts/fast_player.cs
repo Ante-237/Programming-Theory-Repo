@@ -23,6 +23,12 @@ public class fast_player : player
         set { fast_player_speed = value; }
     }
 
+    public int fast_points_u
+    {
+        get { return fast_points; } 
+        set { fast_points = value; }
+    }
+
 
 
 
@@ -43,7 +49,19 @@ public class fast_player : player
 
     public override void damage(int damage)
     {
-        throw new System.NotImplementedException();
+        if(fast_player_health > 0)
+        {
+            fast_player_health -= damage;
+            if(fast_player_health < 0)
+            {
+                fast_player_health = 0;
+            }
+        }
+        else
+        {
+            fast_player_health = 0;
+            Destroy(gameObject, 2.0f);
+        }
     }
 
 

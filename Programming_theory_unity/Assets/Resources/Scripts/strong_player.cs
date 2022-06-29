@@ -24,6 +24,12 @@ public class strong_player : player
         set { strong_player_speed = value; }
     }
 
+    public int strong_points_u
+    {
+        get { return strong_points; }
+        set { strong_points = value; }
+    }
+
 
     private void FixedUpdate()
     {
@@ -43,8 +49,18 @@ public class strong_player : player
 
     public override void damage(int damage)
     {
-        throw new System.NotImplementedException();
+        if (strong_player_health > 0)
+        {
+            strong_player_health -= damage;
+            if (strong_player_health < 0)
+            {
+                strong_player_health = 0;
+            }
+        }
+        else
+        {
+            strong_player_health = 0;
+            Destroy(gameObject, 2.0f);
+        }
     }
-
-
 }

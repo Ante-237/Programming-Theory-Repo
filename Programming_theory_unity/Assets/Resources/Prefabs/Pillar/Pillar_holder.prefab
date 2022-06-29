@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4099017330996189861}
-  - component: {fileID: -5352706172522366657}
   m_Layer: 0
   m_Name: Pillar_holder
-  m_TagString: pillar
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,19 +31,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-5352706172522366657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4099017330996189862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7d7868a1702e7e4586c4f1d44b7905b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  randomPos: {fileID: 0}
 --- !u!1 &4099017333037643355
 GameObject:
   m_ObjectHideFlags: 0
@@ -57,9 +43,10 @@ GameObject:
   - component: {fileID: 4099017333037643359}
   - component: {fileID: 4099017333037643352}
   - component: {fileID: 4099017333037643353}
+  - component: {fileID: 15406684644631544}
   m_Layer: 0
   m_Name: pillar
-  m_TagString: Untagged
+  m_TagString: pillar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,3 +128,17 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &15406684644631544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4099017333037643355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d7868a1702e7e4586c4f1d44b7905b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pillarSpeed: 100
+  pillarWaitTime: 4

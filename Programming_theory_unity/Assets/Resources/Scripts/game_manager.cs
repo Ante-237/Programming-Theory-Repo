@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class game_manager : MonoBehaviour
 {
@@ -16,9 +18,12 @@ public class game_manager : MonoBehaviour
     private Transform[] pillarWay_points;
     [SerializeField]
     private Transform[] box_way_point;
+    [SerializeField]
+    private TMP_Text text_Points;
+    [SerializeField]
+    private TMP_Text text_health;
 
-
-    //points change box
+    //box prefab
     [SerializeField]
     private GameObject box_prefab;
 
@@ -42,6 +47,12 @@ public class game_manager : MonoBehaviour
         InvokeRepeating("create_point_box", 10,repeatRate);
         //test method
         
+    }
+
+    private void Update()
+    {
+        //points updated here
+        updatePoints();
     }
 
     //method creates and instantiate player depending on the choice which indicates stroing or fast player
@@ -102,7 +113,10 @@ public class game_manager : MonoBehaviour
         int value = Random.Range(0, box_way_point.Length) ;
         float rotateR = Random.Range(0, 180);
         Instantiate(box_prefab, box_way_point[value].position, box_prefab.transform.rotation);
-        GameObject.FindGameObjectWithTag("pillar").GetComponent<pillars>().changePos();
+        if (GameObject.FindGameObjectWithTag("pillar") != null)
+        {
+            GameObject.FindGameObjectWithTag("pillar").GetComponent<pillars>().changePos();
+        }
         //swaping pillars
     }
 
@@ -115,12 +129,40 @@ public class game_manager : MonoBehaviour
         float xRangeP = 325.0f;
         float zRangeN = -360.0f;
         float zRangeP = 375.0f;
-        float yDefualt = 65.0f;
+        float yDefualt = 12.5f;
         float randomX = Random.Range(xRangeN, xRangeP);
         float randomZ = Random.Range(zRangeN, zRangeP);
 
         Vector3 newPos = new Vector3(randomX, yDefualt, randomZ);
         return newPos;
+    }
+
+
+    //get game Objecct check ifs its alive and return it
+    public GameObject getGameObject(string tag)
+    {
+        if(GameObject.FindGameObjectWithTag(tag) != null)
+        {
+            return GameObject.FindGameObjectWithTag(tag);
+        }
+        return null;
+    }
+
+    //methods updates player points with TextMesh pro
+    public void updatePoints()
+    {
+        if(getGameObject("fast_player") != null)
+        {
+            text_Points.text = "Fast Points: "+getGameObject("fast_player").GetComponent<fast_player>().fast_points_u;
+            text_health.text = "Fast HP:" + getGameObject("fast_player").GetComponent<fast_player>().fast_player_health_u;
+
+        }
+
+        if (getGameObject("strong_player") != null)
+        {
+            text_Points.text = "Strong Points: " + getGameObject("strong_player").GetComponent<strong_player>().strong_points_u;
+            text_health.text = "Strong HP:" + getGameObject("strong_player").GetComponent<strong_player>().strong_player_health_u;
+        }
     }
   
 
