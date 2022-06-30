@@ -7,6 +7,8 @@ public class sceneManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject gameOver_Panel;
+    [SerializeField]
+    private GameObject pointBox_Panel;
 
 
     //bring gameOver panel to visible.
@@ -25,6 +27,13 @@ public class sceneManager : MonoBehaviour
         SceneManager.LoadScene("game_scene");
         gameOver_Decide(false);
     }
+
+    public void show_PointBox(bool decide)
+    {
+        pointBox_Panel.SetActive(decide);
+    }
+        
+
 
     
 }

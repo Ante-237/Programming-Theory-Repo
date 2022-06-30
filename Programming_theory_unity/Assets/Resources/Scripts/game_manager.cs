@@ -37,7 +37,16 @@ public class game_manager : MonoBehaviour
     //defualt value for box appearing
     int repeatRate = 20;
 
- 
+
+
+    //collection of box
+    private bool isBoxCollect = false;
+    public bool isBoxCollect_O
+    {
+        get { return isBoxCollect; }   
+        set { isBoxCollect = value; }
+    }
+
 
 
     private void Start()
@@ -153,6 +162,7 @@ public class game_manager : MonoBehaviour
     {
         if(getGameObject("fast_player") != null)
         {
+            box_pointVisible();
             text_Points.text = "Fast Points: "+getGameObject("fast_player").GetComponent<fast_player>().fast_points_u;
             text_health.text = "Fast HP:" + getGameObject("fast_player").GetComponent<fast_player>().fast_player_health_u;
 
@@ -160,9 +170,29 @@ public class game_manager : MonoBehaviour
 
         if (getGameObject("strong_player") != null)
         {
+            box_pointVisible();
             text_Points.text = "Strong Points: " + getGameObject("strong_player").GetComponent<strong_player>().strong_points_u;
             text_health.text = "Strong HP:" + getGameObject("strong_player").GetComponent<strong_player>().strong_player_health_u;
         }
+    }
+
+
+    //method checks if points collected and makes the points image visible 
+    private void box_pointVisible()
+    {
+        if (isBoxCollect)
+        {
+            get_SceneBox(isBoxCollect);
+        }else
+        {
+            get_SceneBox(isBoxCollect);
+        }
+    }
+
+    //find the scenemanager scritps and changes pointBox options
+    private void get_SceneBox(bool decide)
+    {
+        GameObject.FindGameObjectWithTag("SceneManager").GetComponent<sceneManager>().show_PointBox(decide);
     }
   
 

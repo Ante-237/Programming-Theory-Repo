@@ -10,6 +10,8 @@ TagManager:
   - goal_box
   - center
   - move_one
+  - GameManager
+  - SceneManager
   layers:
   - Default
   - TransparentFX
