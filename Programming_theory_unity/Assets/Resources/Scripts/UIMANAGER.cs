@@ -1,0 +1,71 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class UIMANAGER : MonoBehaviour
+{
+    //for choosing player
+    [SerializeField]
+    private Toggle speed_toggle;
+    [SerializeField]
+    private Toggle strong_toggle;
+
+    //for choosing difficulty
+    [SerializeField]
+    private Slider difficulty_slider;
+
+    //for entering name
+    [SerializeField]
+    private InputField player_inputName;
+
+    //for shwoing high score
+    [SerializeField]
+    private TMP_Text game_highScore;
+
+
+ 
+
+    //method gets information from choosen player and allows only one to be selected
+
+    //method will be used by the toggles when they changed
+    public void get_PlayerChoice()
+    {
+        get_playerInGameChoice(); 
+
+        int tempSelect = get_DataScript().selectedPlayer;
+        if (tempSelect == 0)
+        {
+            strong_toggle.isOn = false;
+            speed_toggle.isOn = true;
+            get_DataScript().selectedPlayer = 0;
+        }
+        else 
+        {
+            strong_toggle.isOn = true;
+            speed_toggle.isOn = false;
+            get_DataScript().selectedPlayer = 1;
+        }
+        Debug.Log("selected player"+ get_DataScript().selectedPlayer);
+    }
+
+    private void get_playerInGameChoice()
+    {
+        if (speed_toggle.isOn)
+        {
+            get_DataScript().selectedPlayer = 0;
+        }
+        else { 
+            get_DataScript().selectedPlayer = 1;
+        }
+    }
+
+    //method returns the game data script
+    private datamanager get_DataScript()
+    {
+        return datamanager.instance;
+    }
+
+
+}

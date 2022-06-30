@@ -33,6 +33,16 @@ public class sceneManager : MonoBehaviour
         pointBox_Panel.SetActive(decide);
     }
         
+    public void exitGame()
+    {
+        Application.Quit();
+    }
+
+    public void startgame()
+    {
+        SceneManager.LoadScene("game_scene");
+    }
+
 
 
     
