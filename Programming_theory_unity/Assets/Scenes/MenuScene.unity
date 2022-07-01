@@ -2012,7 +2012,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.39220187, y: 0.2261531}
   m_AnchorMax: {x: 0.6371927, y: 0.9782944}
-  m_AnchoredPosition: {x: 1.6, y: 5.4}
+  m_AnchoredPosition: {x: 1.5999985, y: 5.399994}
   m_SizeDelta: {x: 179.3649, y: -246.6687}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &943919546
@@ -2114,7 +2114,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215688, g: 0.4389654, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3483,7 +3483,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05321561, y: 0.083000004}
   m_AnchorMax: {x: 0.38039222, y: 0.94184405}
-  m_AnchoredPosition: {x: 4.5, y: -0.88615}
+  m_AnchoredPosition: {x: 4.5, y: -0.8861542}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1791973679

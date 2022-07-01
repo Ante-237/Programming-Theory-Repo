@@ -55,7 +55,7 @@ public class UIMANAGER : MonoBehaviour
             speed_toggle.isOn = false;
             get_DataScript().selectedPlayer = 1;
         }
-        Debug.Log("selected player"+ get_DataScript().selectedPlayer);
+   
     }
 
     private void get_playerInGameChoice()
