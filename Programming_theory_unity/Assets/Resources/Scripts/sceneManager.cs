@@ -36,11 +36,13 @@ public class sceneManager : MonoBehaviour
     public void exitGame()
     {
         Application.Quit();
+        datamanager.instance.StoreData();
     }
 
     public void startgame()
     {
         SceneManager.LoadScene("game_scene");
+        datamanager.instance.StoreData();
     }
 
 

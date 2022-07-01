@@ -13,6 +13,8 @@ public class datamanager : MonoBehaviour
     public int selectedPlayer = 1;
     public bool showHelp = true;
     public float difficulty = 0;
+    public int highScore = 300;
+    public string high_player = "Ante";
 
 
     [System.Serializable]
@@ -21,6 +23,8 @@ public class datamanager : MonoBehaviour
         public string playerName;
         public string playerPoints;
         public int selectedPlayer = 0;
+        public int highScore = 300;
+        public string high_player = "Ante";
         public bool showHelp = true;
         public float difficulty = 0;
     }
@@ -32,6 +36,8 @@ public class datamanager : MonoBehaviour
         data.playerPoints = playerPoints;
         data.selectedPlayer = selectedPlayer;
         data.showHelp = showHelp;
+        data.highScore = highScore;
+        data.high_player = high_player;
         data.difficulty = difficulty; 
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/saveData.json", json);
@@ -49,10 +55,11 @@ public class datamanager : MonoBehaviour
             playerPoints = data.playerPoints;
             selectedPlayer = data.selectedPlayer;
             showHelp = data.showHelp;
+            highScore = data.highScore;
+            high_player = data.high_player;
             difficulty = data.difficulty;
         }
     }
-
 
 
     private void Awake()
@@ -65,4 +72,6 @@ public class datamanager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         LoadData(); 
     }
+
+
 }

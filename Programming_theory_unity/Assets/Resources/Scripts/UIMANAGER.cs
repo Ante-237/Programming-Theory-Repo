@@ -24,12 +24,20 @@ public class UIMANAGER : MonoBehaviour
     [SerializeField]
     private TMP_Text game_highScore;
 
+    [SerializeField]
+    private GameObject game_helpPanel;
 
- 
 
     //method gets information from choosen player and allows only one to be selected
 
     //method will be used by the toggles when they changed
+
+    private void Start()
+    {
+        get_DataScript().LoadData();
+        set_HighScore();
+        first_TimePlaying();
+    }
     public void get_PlayerChoice()
     {
         get_playerInGameChoice(); 
@@ -66,6 +74,43 @@ public class UIMANAGER : MonoBehaviour
     {
         return datamanager.instance;
     }
+
+    //get the players name and stores it
+    public void name_Input()
+    {
+        get_DataScript().playerName = player_inputName.text;
+    }
+
+    //set the text on the UI to the player with highest score with name as well.
+    private void set_HighScore()
+    {
+        game_highScore.text = get_DataScript().high_player + "             " + get_DataScript().highScore + "XP";
+    }
+
+    //get the difficulty level and stores it to use and optimize the game
+    public void get_Difficulty()
+    {
+        get_DataScript().difficulty = difficulty_slider.value;
+    }
+
+    //shows the help panel the first time
+    public void first_TimePlaying()
+    {
+        if(get_DataScript().showHelp)
+        {
+            game_helpPanel.SetActive(true);
+        }
+    }
+
+    //method diactives the help panel when the close button is click;
+    public void close_HelpPanel()
+    {
+        game_helpPanel.SetActive(false);
+        get_DataScript().showHelp = false;
+    }
+
+
+
 
 
 }

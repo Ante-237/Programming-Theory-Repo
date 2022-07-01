@@ -12,6 +12,7 @@ TagManager:
   - move_one
   - GameManager
   - SceneManager
+  - Datamanager
   layers:
   - Default
   - TransparentFX
