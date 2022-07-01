@@ -35,12 +35,15 @@ public class game_manager : MonoBehaviour
     //defualt play mode
     int playMode = 0;
     //defualt value for box appearing
-    int repeatRate = 20;
+    int repeatRate = 10;
+
+    float difficulty = 0;
 
 
 
     //collection of box
     private bool isBoxCollect = false;
+    // ENCAPSULATION
     public bool isBoxCollect_O
     {
         get { return isBoxCollect; }   
@@ -53,8 +56,12 @@ public class game_manager : MonoBehaviour
     {
         createPlayer(choice);
         createPillars(pillars_To_leave());
+        datamanager.instance.LoadData();
+        difficulty = get_DataScript().difficulty;
+        change_Difficulty();
         InvokeRepeating("create_point_box", 10,repeatRate);
         //test method
+
         
     }
 
@@ -67,12 +74,15 @@ public class game_manager : MonoBehaviour
     //method creates and instantiate player depending on the choice which indicates stroing or fast player
     void createPlayer(int choice)
     {
+        choice = get_DataScript().selectedPlayer;
         GameObject lifePlayer = Instantiate(playerPrefab[choice], playerStart_point[choice].position, playerPrefab[choice].transform.rotation);
     }
     
     //method creates pillars base on the number of pillars to be instantiated and the playmode currently in action
     void createPillars(int amount)
     {
+        int RangeY = Random.Range(0, 180);
+        Quaternion rotation = Quaternion.Euler(0, RangeY, 0);
        for(int i = 0; i < amount; i++)
         {
             switch (playMode)
@@ -81,6 +91,7 @@ public class game_manager : MonoBehaviour
                     instance_Pillar(pillarWay_points[i]);
                     break;
                 case 1:
+                    instance_Pillar(pillarWay_points[i], rotation);
                     //nothing for now
                     break;
                 default:
@@ -96,9 +107,9 @@ public class game_manager : MonoBehaviour
         return Instantiate(pillarPrefab, way_points.position, pillarPrefab.transform.rotation);
     }
     //METHOD OVERLOADING
-    private GameObject instance_Pillar(Transform way_points, Transform rotationP)
+    private GameObject instance_Pillar(Transform way_points, Quaternion rotationP)
     {
-        return Instantiate(pillarPrefab, way_points.position, rotationP.rotation);
+        return Instantiate(pillarPrefab, way_points.position, rotationP);
     }
 
     //method returns a value within the array range as not to access out of bounce
@@ -189,6 +200,11 @@ public class game_manager : MonoBehaviour
         }
     }
 
+    private datamanager get_DataScript()
+    {
+        return datamanager.instance;
+    }
+
     //find the scenemanager scritps and changes pointBox options
     private void get_SceneBox(bool decide)
     {
@@ -196,7 +212,61 @@ public class game_manager : MonoBehaviour
     }
   
 
- 
+    //checks if the players socre is higher than previous score and sets the high school to his name
+    public void show_HighPlayer()
+    {
+       int tempHigh = get_DataScript().highScore;
+        int tempNorm = get_DataScript().playerPoints;
+        if(tempNorm > tempHigh)
+        {
+            get_DataScript().highScore = tempNorm;
+            get_DataScript().high_player = get_DataScript().playerName;
+        }
+    }
+
+    //method increase certains factors based on the games difficulty value
+    private void change_Difficulty()
+    {
+        if (difficulty > 0 && difficulty < 7)
+        {
+            call_createPillar(6);
+            playMode = 0;
+            repeatRate = 10;
+
+        }
+        else if (difficulty > 6 && difficulty < 11)
+        {
+            playMode = 0;
+            repeatRate = 20;
+            call_createPillar(12);
+        }
+        else if (difficulty > 10 && difficulty < 16)
+        {
+            playMode = 1;
+            repeatRate = 40;
+            call_createPillar(20);
+        }
+        else if (difficulty == 20)
+        {
+            playMode = 1;
+            repeatRate = 80;
+            call_createPillar(40);
+        }
+         
+    }
+    //METHOD OVERLOADING
+    private GameObject instance_Pillar(Vector3 way_points)
+    {
+        return Instantiate(pillarPrefab, way_points, pillarPrefab.transform.rotation);
+    }
+    //method call the pillar create scirpt multiple times
+    private void call_createPillar(int number)
+    {
+        for(int i = 0; i < number; i++) { 
+        
+            instance_Pillar(generatePosition());
+        }
+    }
     
 
 }

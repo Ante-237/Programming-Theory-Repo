@@ -10,6 +10,7 @@ public class pillars : MonoBehaviour
     [SerializeField]
     private float pillarSpeed = 100.0f;
     [SerializeField]
+    // ENCAPSULATION
     public float pillarSpeed_O
     {
         get { return pillarSpeed; }
@@ -18,10 +19,17 @@ public class pillars : MonoBehaviour
 
     [SerializeField]
     private float pillarWaitTime = 4.0f;
+    // ENCAPSULATION
     public float pillarWaitTime_O
     {
         set { pillarWaitTime = value; }
         get { return pillarWaitTime; }
+    }
+    // ENCAPSULATION
+    public float pillarSpeed_u
+    {
+        get { return pillarSpeed; } 
+        set { pillarSpeed = value;  }
     }
 
   

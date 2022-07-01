@@ -9,11 +9,11 @@ public class datamanager : MonoBehaviour
 
 
     public string playerName;
-    public string playerPoints;
+    public int playerPoints;
     public int selectedPlayer = 1;
     public bool showHelp = true;
     public float difficulty = 0;
-    public int highScore = 300;
+    public int highScore = 20;
     public string high_player = "Ante";
 
 
@@ -21,7 +21,7 @@ public class datamanager : MonoBehaviour
     class SaveData
     {
         public string playerName;
-        public string playerPoints;
+        public int playerPoints;
         public int selectedPlayer = 0;
         public int highScore = 300;
         public string high_player = "Ante";

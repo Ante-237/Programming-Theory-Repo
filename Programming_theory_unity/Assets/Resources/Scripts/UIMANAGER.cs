@@ -100,6 +100,10 @@ public class UIMANAGER : MonoBehaviour
         {
             game_helpPanel.SetActive(true);
         }
+        else
+        {
+            game_helpPanel.SetActive(false);
+        }
     }
 
     //method diactives the help panel when the close button is click;
@@ -109,6 +113,11 @@ public class UIMANAGER : MonoBehaviour
         get_DataScript().showHelp = false;
     }
 
+    private void OnMouseDrag()
+    {
+        difficulty_slider.value = get_DataScript().difficulty;
+        get_Difficulty();
+    }
 
 
 

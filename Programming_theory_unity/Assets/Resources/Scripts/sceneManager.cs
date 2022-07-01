@@ -11,6 +11,13 @@ public class sceneManager : MonoBehaviour
     private GameObject pointBox_Panel;
 
 
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape)) {
+            mainMenu();
+        }
+    }
     //bring gameOver panel to visible.
     public void gameOver_Decide(bool decide)
     {
@@ -19,13 +26,16 @@ public class sceneManager : MonoBehaviour
 
     public void mainMenu()
     {
+        datamanager.instance.StoreData();
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<game_manager>().show_HighPlayer();
         SceneManager.LoadScene("MenuScene");
     }
 
     public void restartlevel()
     {
-        SceneManager.LoadScene("game_scene");
         gameOver_Decide(false);
+        SceneManager.LoadScene("game_scene");
+        
     }
 
     public void show_PointBox(bool decide)
@@ -35,15 +45,20 @@ public class sceneManager : MonoBehaviour
         
     public void exitGame()
     {
-        Application.Quit();
         datamanager.instance.StoreData();
+        Application.Quit();
+        
     }
 
     public void startgame()
-    {
-        SceneManager.LoadScene("game_scene");
+    { 
         datamanager.instance.StoreData();
+        datamanager.instance.LoadData();
+        SceneManager.LoadScene("game_scene");
+       
     }
+
+   
 
 
 
