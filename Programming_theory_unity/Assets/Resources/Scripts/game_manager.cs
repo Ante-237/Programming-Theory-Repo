@@ -232,25 +232,30 @@ public class game_manager : MonoBehaviour
             call_createPillar(6);
             playMode = 0;
             repeatRate = 10;
+            change_PillarSpeedRate(60.0f, 6.0f);
+
 
         }
         else if (difficulty > 6 && difficulty < 11)
         {
             playMode = 0;
-            repeatRate = 20;
+            repeatRate = 6;
             call_createPillar(12);
+            change_PillarSpeedRate(80.0f, 5.0f);
         }
         else if (difficulty > 10 && difficulty < 16)
         {
             playMode = 1;
-            repeatRate = 40;
+            repeatRate = 4;
             call_createPillar(20);
+            change_PillarSpeedRate(90.0f, 4.0f);
         }
         else if (difficulty == 20)
         {
             playMode = 1;
-            repeatRate = 80;
+            repeatRate = 3;
             call_createPillar(40);
+            change_PillarSpeedRate(110.0f, 2.0f);
         }
          
     }
@@ -266,6 +271,18 @@ public class game_manager : MonoBehaviour
         
             instance_Pillar(generatePosition());
         }
+    }
+
+    //change pillalr wait value depending on the present difficulty
+    private void change_PillarSpeedRate(float speed, float rate)
+    {
+        GameObject[] tempPillars = GameObject.FindGameObjectsWithTag("pillar");
+        foreach(GameObject i in tempPillars)
+        {
+            i.GetComponent<pillars>().pillarSpeed_O = speed;
+            i.GetComponent<pillars>().pillarWaitTime_O = rate;
+        }
+       
     }
     
 

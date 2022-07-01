@@ -25,13 +25,7 @@ public class pillars : MonoBehaviour
         set { pillarWaitTime = value; }
         get { return pillarWaitTime; }
     }
-    // ENCAPSULATION
-    public float pillarSpeed_u
-    {
-        get { return pillarSpeed; } 
-        set { pillarSpeed = value;  }
-    }
-
+ 
   
 
     private void Start()
